@@ -5,24 +5,35 @@ alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def caesar_encode(text, n):
     new_str = ""
     for let in text:
-        index = alpha.index(let)
+        index = alpha.lower().index(let.lower())
         if not (index + n > len(alpha)):
-            new_str += alpha[index + n]
+            if let.isupper():
+                new_str += alpha[index + n]
+            else:
+                new_str += alpha[index + n].lower()
         else:
-            new_str += alpha[(index + n) - len(alpha)]
+            if let.isupper():
+                new_str += alpha[(index + n) - len(alpha)]
+            else:
+                new_str += alpha[(index + n) - len(alpha)].lower()
     return new_str
 
 
 def caesar_decode(text, n):
     new_str = ""
     for let in text:
-        index = alpha.index(let)
+        index = alpha.lower().index(let.lower())
         if not (index - n < 0):
-            new_str += alpha[index - n]
+            if let.isupper():
+                new_str += alpha[index - n]
+            else:
+                new_str += alpha[index - n].lower()
         else:
-            new_str += alpha[(index - n) + len(alpha)]
+            if let.isupper():
+                new_str += alpha[(index - n) + len(alpha)]
+            else:
+                new_str += alpha[(index - n) + len(alpha)].lower()
     return new_str
-
 
 test = "HELLOWORLD"
 shift = 5
