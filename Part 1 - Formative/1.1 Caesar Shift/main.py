@@ -5,34 +5,41 @@ alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def caesar_encode(text, n):
     new_str = ""
     for let in text:
-        index = alpha.lower().index(let.lower())
-        if not (index + n > len(alpha)):
-            if let.isupper():
-                new_str += alpha[index + n]
-            else:
-                new_str += alpha[index + n].lower()
+        if let not in alpha:
+            new_str += let
         else:
-            if let.isupper():
-                new_str += alpha[(index + n) - len(alpha)]
+            index = alpha.lower().index(let.lower())
+            if not (index + n > len(alpha)):
+                if let.isupper():
+                    new_str += alpha[index + n]
+                else:
+                    new_str += alpha[index + n].lower()
             else:
-                new_str += alpha[(index + n) - len(alpha)].lower()
+                if let.isupper():
+                    new_str += alpha[(index + n) - len(alpha)]
+                else:
+                    new_str += alpha[(index + n) - len(alpha)].lower()
     return new_str
 
 
 def caesar_decode(text, n):
     new_str = ""
     for let in text:
-        index = alpha.lower().index(let.lower())
-        if not (index - n < 0):
-            if let.isupper():
-                new_str += alpha[index - n]
-            else:
-                new_str += alpha[index - n].lower()
+        if let not in alpha:
+            new_str += let
         else:
-            if let.isupper():
-                new_str += alpha[(index - n) + len(alpha)]
-            else:
-                new_str += alpha[(index - n) + len(alpha)].lower()
+            for let in text:
+                index = alpha.lower().index(let.lower())
+                if not (index - n < 0):
+                    if let.isupper():
+                        new_str += alpha[index - n]
+                    else:
+                        new_str += alpha[index - n].lower()
+                else:
+                    if let.isupper():
+                        new_str += alpha[(index - n) + len(alpha)]
+                    else:
+                        new_str += alpha[(index - n) + len(alpha)].lower()
     return new_str
 
 test = "HELLOWORLD"
