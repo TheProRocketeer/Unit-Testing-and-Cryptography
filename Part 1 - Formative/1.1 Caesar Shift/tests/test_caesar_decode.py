@@ -18,3 +18,5 @@ class Test(TestCase):
         self.assertEqual(caesar_decode("ZRZ", 3), "WOW")
     def test_caesar_decode_one_word_space(self):
         self.assertEqual(caesar_decode("d zrug", 3), "a word")
+    def test_caesar_decode_one_word_multletter(self):
+        self.assertEqual(caesar_decode("ohwwhu", 3), "letter")
