@@ -6,7 +6,7 @@ cipher_alphabet = "WJKUXVBMIYDTPLHZGONCRSAEFQ"
 def sub_encode(text, codebet):
     new_str = ""
     for let in text:
-        if let not in alpha:
+        if let.lower() not in alpha.lower():
             new_str += let
         else:
             index = alpha.lower().index(let.lower())
@@ -20,7 +20,7 @@ def sub_encode(text, codebet):
 def sub_decode(text, codebet):
     new_str = ""
     for let in text:
-        if let not in codebet:
+        if let.lower() not in codebet.lower():
             new_str += let
         else:
             index = codebet.lower().index(let.lower())
