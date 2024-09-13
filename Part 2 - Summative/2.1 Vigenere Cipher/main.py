@@ -1,6 +1,6 @@
 # Read the instructions to see what you need to do here!
 
-alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
 
 def vig_encode(text, keyword):
   new_str = ""
@@ -12,16 +12,11 @@ def vig_encode(text, keyword):
     else:
       index_a = alpha.lower().index(let.lower())
       index_b = alpha.lower().index(keyword[(i % len(keyword))].lower())
-      if index_a + index_b > len(alpha):
-        if let.isupper():
-          new_str += alpha[index_a + index_b - 26]
-        else:
-          new_str += alpha[index_a + index_b - 26].lower()
+      new_index = (index_a + index_b) % len(alpha)
+      if not let.isupper():
+        new_str += alpha[new_index].lower()
       else:
-        if let.isupper():
-          new_str += alpha[index_a + index_b]
-        else:
-          new_str += alpha[index_a + index_b].lower()
+        new_str += alpha[new_index]
   return new_str
 
 
@@ -35,16 +30,11 @@ def vig_decode(text, keyword):
     else:
       index_a = alpha.lower().index(let.lower())
       index_b = alpha.lower().index(keyword[(i % len(keyword))].lower())
-      if index_a + index_b < len(alpha):
-        if let.isupper():
-          new_str += alpha[index_a - index_b + 26]
-        else:
-          new_str += alpha[index_a - index_b + 26].lower()
+      new_index = (index_a - index_b) % len(alpha)
+      if not let.isupper():
+        new_str += alpha[new_index].lower()
       else:
-        if let.isupper():
-          new_str += alpha[index_a - index_b]
-        else:
-          new_str += alpha[index_a - index_b].lower()
+        new_str += alpha[new_index]
   return new_str
 
 
