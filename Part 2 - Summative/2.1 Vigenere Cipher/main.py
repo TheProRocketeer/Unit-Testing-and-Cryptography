@@ -13,11 +13,8 @@ def vig_encode(text, keyword):
       index_a = alpha.lower().index(let.lower())
       index_b = alpha.lower().index(keyword[(i % len(keyword))].lower())
       new_index = (index_a + index_b) % len(alpha)
-      if not let.isupper():
-        new_str += alpha[new_index].lower()
-      else:
-        new_str += alpha[new_index]
-  return new_str
+      new_str += alpha[new_index]
+  return new_str.upper()
 
 
 def vig_decode(text, keyword):
@@ -31,11 +28,8 @@ def vig_decode(text, keyword):
       index_a = alpha.lower().index(let.lower())
       index_b = alpha.lower().index(keyword[(i % len(keyword))].lower())
       new_index = (index_a - index_b) % len(alpha)
-      if not let.isupper():
-        new_str += alpha[new_index].lower()
-      else:
-        new_str += alpha[new_index]
-  return new_str
+      new_str += alpha[new_index]
+  return new_str.upper()
 
 
 test = "THEQUICKBROWNFOXJUMPEDOVERTHELAZYDOG"
