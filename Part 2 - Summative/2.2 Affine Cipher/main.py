@@ -20,10 +20,35 @@ def mod_inverse(a, m):
 
 # These are the functions you'll need to write:
 def affine_encode(text, a, b):
-    return ''
+    new_str = ""
+    for let in text:
+        mod_inverse(let, 26)
+        if let.lower() not in alpha.lower():
+            new_str += let
+        else:
+            index = alpha.lower().index(let.lower())
+            mod_inverse(a, b)
+            index_a = index * (a % 26) * (b % 26) % 26
+            if let.isupper():
+                new_str += alpha[index_a]
+            else:
+                new_str += alpha[index_a].lower()
+    return new_str
 
 def affine_decode(text, a, b):
-    return ''
+    new_str = ""
+    for let in text:
+        if let.lower() not in alpha.lower():
+            new_str += let
+        else:
+            index = alpha.lower().index(let.lower())
+            mod_inverse(a, b)
+            index_a = (index * (a % 26)) * (b % 26) % 26
+            if let.isupper():
+                new_str += alpha[index_a]
+            else:
+                new_str += alpha[index_a].lower()
+    return new_str
 
 test = "HELLOWORLD"
 a = 3
