@@ -21,34 +21,33 @@ def mod_inverse(a, m):
 # These are the functions you'll need to write:
 def affine_encode(text, a, b):
     new_str = ""
+    newer_str = ""
     for let in text:
-        mod_inverse(let, 26)
         if let.lower() not in alpha.lower():
             new_str += let
         else:
-            index = alpha.lower().index(let.lower())
-            mod_inverse(a, b)
-            index_a = index * (a % 26) * (b % 26) % 26
-            if let.isupper():
-                new_str += alpha[index_a]
-            else:
-                new_str += alpha[index_a].lower()
-    return new_str
+            index_b = alpha.lower().index(let.lower())
+            index_a = index_b * (a % len(alpha)) % len(alpha)
+            new_str += alpha[index_a]
+    for let in new_str:
+        index_c = alpha.lower().index(let.lower())
+        newer_str += alpha[(index_c + b) % len(alpha)]
+    return newer_str
 
 def affine_decode(text, a, b):
     new_str = ""
+    newer_str = ""
     for let in text:
         if let.lower() not in alpha.lower():
             new_str += let
         else:
-            index = alpha.lower().index(let.lower())
-            mod_inverse(a, b)
-            index_a = (index * (a % 26)) * (b % 26) % 26
-            if let.isupper():
-                new_str += alpha[index_a]
-            else:
-                new_str += alpha[index_a].lower()
-    return new_str
+            index_c = alpha.lower().index(let.lower())
+            new_str += alpha[(index_c - b) % len(alpha)]
+    for let in new_str:
+        index_b = alpha.lower().index(let.lower())
+        index_a = index_b * (mod_inverse(a, len(alpha))) % len(alpha)
+        newer_str += alpha[index_a]
+    return newer_str
 
 test = "HELLOWORLD"
 a = 3
@@ -64,6 +63,8 @@ print(dec)
 # PART 2
 # These  are the functions you'll need to write:
 def convert_to_num(ngram):
+    for letter in ngram:
+        alpha.index(letter)
     return 0
 
 def convert_to_text(num, n):
