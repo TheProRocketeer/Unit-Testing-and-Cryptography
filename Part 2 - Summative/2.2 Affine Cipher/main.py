@@ -63,12 +63,18 @@ print(dec)
 # PART 2
 # These  are the functions you'll need to write:
 def convert_to_num(ngram):
-    for letter in ngram:
-        alpha.index(letter)
-    return 0
+    new_num = 0
+    for i in range(len(ngram)):
+        new_num += alpha.lower().index(ngram[i].lower()) * (26**i)
+    return new_num
 
 def convert_to_text(num, n):
-    return ''
+    new_str = ""
+    new_num = num
+    for i in range(n - 1):
+        new_num = new_num / 26
+        new_str += alpha[int(new_num % 26)]
+    return new_str
 
 test = "THEQUICKBROWNFOXJUMPEDOVERTHELAZYDOG"
 l = len(test)
