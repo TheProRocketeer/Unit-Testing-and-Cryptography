@@ -71,9 +71,9 @@ def convert_to_num(ngram):
 def convert_to_text(num, n):
     new_str = ""
     new_num = num
-    for i in range(n - 1):
-        new_num = new_num / 26
-        new_str += alpha[int(new_num % 26)]
+    for i in range(n):
+        new_str += alpha[new_num % 26]
+        new_num = new_num // 26
     return new_str
 
 test = "THEQUICKBROWNFOXJUMPEDOVERTHELAZYDOG"
