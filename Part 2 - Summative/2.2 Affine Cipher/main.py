@@ -30,8 +30,11 @@ def affine_encode(text, a, b):
             index_a = index_b * (a % len(alpha)) % len(alpha)
             new_str += alpha[index_a]
     for let in new_str:
-        index_c = alpha.lower().index(let.lower())
-        newer_str += alpha[(index_c + b) % len(alpha)]
+        if let.lower() not in alpha.lower():
+            newer_str += let
+        else:
+            index_c = alpha.lower().index(let.lower())
+            newer_str += alpha[(index_c + b) % len(alpha)]
     return newer_str
 
 def affine_decode(text, a, b):
@@ -44,9 +47,12 @@ def affine_decode(text, a, b):
             index_c = alpha.lower().index(let.lower())
             new_str += alpha[(index_c - b) % len(alpha)]
     for let in new_str:
-        index_b = alpha.lower().index(let.lower())
-        index_a = index_b * (mod_inverse(a, len(alpha))) % len(alpha)
-        newer_str += alpha[index_a]
+        if let.lower() not in alpha.lower():
+            newer_str += let
+        else:
+            index_b = alpha.lower().index(let.lower())
+            index_a = index_b * (mod_inverse(a, len(alpha))) % len(alpha)
+            newer_str += alpha[index_a]
     return newer_str
 
 test = "HELLOWORLD"
