@@ -107,9 +107,8 @@ def convert_to_text(num, n):
         new_num = new_num // 26
     return new_str
 
-test = "wow"
+test = "THEQUICKBROWNFOXJUMPEDOVERTHELAZYDOG"
 l = len(test)
-print(l)
 num = convert_to_num(test)
 answer = convert_to_text(num, l)
 print(num)
@@ -121,11 +120,57 @@ print(answer)
 # PART 3
 
 # These are the functions you'll need to write:
-def affine_n_encode(text, n, a, b):
-    return ''
+def affine_n_encode(text, n, a, b): #doesnt work
+    '''
+    encodes text using n-Grams instead letters
+    :param text: the text that needs to be encoded
+    :param n: the length of the text that will be
+    :param a: the number that is inversed and multiplied by index
+    :param b: how much it is caesar shifted
+    :return: the encoded cipher text
+    '''
+    new_str = ""
+    newer_str = ""
+    for let in text:
+        if let.lower() not in alpha.lower():
+            new_str += let
+        else:
+            index_b = alpha.lower().index(let.lower())
+            index_a = index_b * (a % len(alpha)) % len(alpha)
+            new_str += alpha[index_a]
+    for let in new_str:
+        if let.lower() not in alpha.lower():
+            newer_str += let
+        else:
+            index_c = alpha.lower().index(let.lower())
+            newer_str += alpha[(index_c + b) % len(alpha)]
+    return newer_str
 
-def affine_n_decode(text, n, a, b):
-    return ''
+def affine_n_decode(text, n, a, b): #doesnt work
+    '''
+    decodes text using n-Grams instead letters
+    :param text: the text that needs to be decoded
+    :param n: the length of the text that will be
+    :param a: the number that is inversed and multiplied by index
+    :param b: how much it is caesar shifted
+    :return: the decoded cipher text
+    '''
+    new_str = ""
+    newer_str = ""
+    for let in text:
+        if let.lower() not in alpha.lower():
+            new_str += let
+        else:
+            index_c = alpha.lower().index(let.lower())
+            new_str += alpha[(index_c - b) % len(alpha)]
+    for let in new_str:
+        if let.lower() not in alpha.lower():
+            newer_str += let
+        else:
+            index_b = alpha.lower().index(let.lower())
+            index_a = index_b * (mod_inverse(a, len(alpha))) % len(alpha)
+            newer_str += alpha[index_a]
+    return newer_str
 
 test = "THEQUICKBROWNFOXJUMPEDOVERTHELAZYDOG"
 n = 5
