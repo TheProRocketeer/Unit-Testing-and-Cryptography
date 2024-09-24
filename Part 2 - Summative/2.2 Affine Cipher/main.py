@@ -20,6 +20,13 @@ def mod_inverse(a, m):
 
 # These are the functions you'll need to write:
 def affine_encode(text, a, b):
+    """
+    encodes an affine cipher text into a string of cipher text
+    :param text: the text that needs to be encoded
+    :param a: the number that is inversed and multiplied by index
+    :param b: how much it is caesar shifted
+    :return: decoded cipher text
+    """
     new_str = ""
     newer_str = ""
     for let in text:
@@ -38,6 +45,13 @@ def affine_encode(text, a, b):
     return newer_str
 
 def affine_decode(text, a, b):
+    """
+    decodes an affine cipher text into a string of cipher text
+    :param text: the encrypted cipher text
+    :param a: the number that is inversed and divided by index
+    :param b: how much it is caesar shifted
+    :return: decoded cipher text
+    """
     new_str = ""
     newer_str = ""
     for let in text:
@@ -69,12 +83,23 @@ print(dec)
 # PART 2
 # These  are the functions you'll need to write:
 def convert_to_num(ngram):
+    '''
+    it converts text to a number based on the alphabet
+    :param ngram: the text that needs to be converted
+    :return: an integer based off the text
+    '''
     new_num = 0
     for i in range(len(ngram)):
         new_num += alpha.lower().index(ngram[i].lower()) * (26**i)
     return new_num
 
 def convert_to_text(num, n):
+    '''
+    converts text to a number based on the alphabet
+    :param num: the number that was encoded from the original text
+    :param n: the length of the text that will be decyphered
+    :return: the text that the number decyphers
+    '''
     new_str = ""
     new_num = num
     for i in range(n):
@@ -82,8 +107,9 @@ def convert_to_text(num, n):
         new_num = new_num // 26
     return new_str
 
-test = "THEQUICKBROWNFOXJUMPEDOVERTHELAZYDOG"
+test = "wow"
 l = len(test)
+print(l)
 num = convert_to_num(test)
 answer = convert_to_text(num, l)
 print(num)

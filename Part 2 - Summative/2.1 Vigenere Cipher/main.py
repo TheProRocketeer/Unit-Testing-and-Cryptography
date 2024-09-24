@@ -3,6 +3,12 @@
 alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
 
 def vig_encode(text, keyword):
+  '''
+  encodes text using a vigenere cipher
+  :param text: the text to be encoded
+  :param keyword: the key word used to encode the text
+  :return: the encoded text
+  '''
   new_str = ""
   i = -1
   for let in text:
@@ -18,6 +24,12 @@ def vig_encode(text, keyword):
 
 
 def vig_decode(text, keyword):
+  '''
+  decodes text using a vigenere cipher
+  :param text: the text to be decoded
+  :param keyword: the key word used to decode the text
+  :return: the decoded text
+  '''
   new_str = ""
   i = -1
   for let in text:

@@ -3,6 +3,12 @@
 alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def caesar_encode(text, n):
+    '''
+    this encodes text using a caesar cipher
+    :param text: the text to be encoded
+    :param n: how much to shift the text by
+    :return: the encrypted text
+    '''
     new_str = ""
     for let in text:
         if let.lower() not in alpha.lower():
@@ -23,6 +29,12 @@ def caesar_encode(text, n):
 
 
 def caesar_decode(text, n):
+    '''
+    this decodes text using a caesar cipher
+    :param text: the text to be decoded
+    :param n: how much to shift the text by
+    :return: the decrypted text
+    '''
     new_str = ""
     for let in text:
         if let.lower() not in alpha.lower():

@@ -4,6 +4,12 @@ alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 cipher_alphabet = "WJKUXVBMIYDTPLHZGONCRSAEFQ"
 
 def sub_encode(text, codebet):
+    '''
+    this encodes the text with a substitution cypher
+    :param text: the text to be encoded
+    :param codebet: the key replacement alphabet
+    :return: the encoded text
+    '''
     new_str = ""
     for let in text:
         if let.lower() not in alpha.lower():
@@ -18,6 +24,12 @@ def sub_encode(text, codebet):
 
 
 def sub_decode(text, codebet):
+    '''
+    this decodes the text with a substitution cypher
+    :param text: the text to be decoded
+    :param codebet: the key replacement alphabet
+    :return: the decoded text
+    '''
     new_str = ""
     for let in text:
         if let.lower() not in codebet.lower():
